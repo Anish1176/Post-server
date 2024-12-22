@@ -1,263 +1,220 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Hamburger Menu</title>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    <title>DARK EAGLE RULEXX</title>
     <style>
-
-        *{
-
-    box-sizing: border-box;
-
-    margin: 0;
-
-    padding: 0;
-
-}
-
-body {
-
-    font-family: "Poppins", sans-serif;
-
-    --color1: #FFF ;
-
-    --color2: #181818 ;
-
-    background-image: url('https://i.ibb.co/D17mS16/11a79e76ff1dea32519ba70286bbf06b.jpg');
-
-    background-size: cover;
-
-    color: white;
-
-}
-
-h3{
-
-    font-size: 12px;
-
-    color: white;
-
-    text-align: center;
-
-}
-
-h2{
-
-    text-align: center;
-
-    font-size: 13px;
-
-    font-family: cursive;
-
-}
-
-.nav-bar {
-
-    width: 100%;
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    list-style: none;
-
-    position: relative;
-
-    background-color: var(--color2);
-
-    padding: 12px 20px;
-
-}
-
-.logo img {width: 40px;}
-
-.menu {display: flex;}
-
-.menu li {padding-left: 30px;}
-
-.menu li a {
-
-    display: inline-block;
-
-    text-decoration: none;
-
-    color: var(--color1);
-
-    text-align: center;
-
-    transition: 0.15s ease-in-out;
-
-    position: relative;
-
-    text-transform: uppercase;
-
-}
-
-.menu li a::after {
-
-    content: "";
-
-    position: absolute;
-
-    bottom: 0;
-
-    left: 0;
-
-    width: 0;
-
-    height: 1px;
-
-    background-color: var(--color1);
-
-    transition: 0.15s ease-in-out;
-
-}
-
-.menu li a:hover:after {width: 100%;}
-
-.open-menu , .close-menu {
-
-    position: absolute;
-
-    color: var(--color1);
-
-    cursor: pointer;
-
-    font-size: 1.5rem;
-
-    display: none;
-
-}
-
-.open-menu {
-
-    top: 50%;
-
-    right: 20px;
-
-    transform: translateY(-50%);
-
-}
-
-.close-menu {
-
-    top: 20px;
-
-    right: 20px;
-
-}
-
-#check {display: none;}
-
-@media(max-width: 610px){
-
-    .menu {
-
-        flex-direction: column;
-
-        align-items: center;
-
-        justify-content: center;
-
-        width: 80%;
-
-        height: 100vh;
-
-        position: fixed;
-
-        top: 0;
-
-        right: -100%;
-
-        z-index: 100;
-
-        background-color: var(--color2);
-
-        transition: all 0.2s ease-in-out;
-
-    }
-
-    .menu li {margin-top: 40px;}
-
-    .menu li a {padding: 10px;}
-
-    .open-menu , .close-menu {display: block;}
-
-    #check:checked ~ .menu {right: 0;}
-
-}
-
-
-
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #fff;
+        }
+
+        nav {
+            background-color: #000;
+            color: #ffcc00;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        nav .logo {
+            font-family: 'Arial', sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav .menu-icon {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            align-items: center;
+        }
+
+        nav .menu-icon div {
+            width: 30px;
+            height: 4px;
+            background-color: #ffcc00;
+            margin: 4px 0;
+            transition: all .3s ease;
+        }
+
+        nav .menu-icon:hover div {
+            background-color: #fff;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            color: #ffcc00;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            transition: color .3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #fff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 30px;
+            background-color: #1e1e1e;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(255, 204, 0, 0.3);
+        }
+
+        h1 {
+            text-align: center;
+            color: #ffcc00;
+            font-size: 36px;
+        }
+
+        .service-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .service-item {
+            flex: 1;
+            margin: 15px;
+            padding: 30px;
+            background-color: #282828;
+            text-align: center;
+            border: 2px solid #ffcc00;
+            border-radius: 10px;
+            transition: transform .3s ease, box-shadow .3s ease;
+            cursor: pointer;
+            color: #ffcc00;
+        }
+
+        .service-item h2 {
+            color: #ffcc00;
+        }
+
+        .service-item p {
+            color: #e0e0e0;
+        }
+
+        .service-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(255, 204, 0, 0.5);
+        }
+
+        footer {
+            background-color: #000;
+            color: #ffcc00;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                background-color: #000;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                text-align: left;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav ul li {
+                margin: 0;
+                padding: 15px 20px;
+            }
+
+            nav ul li a {
+                display: block;
+            }
+
+            .service-section {
+                flex-direction: column;
+            }
+
+            .service-item {
+                margin: 10px 0;
+            }
+        }
     </style>
-
-    </head>
-
-    
-
+</head>
 <body>
-
-    <header>
-
     <nav>
-
-        <ul class='nav-bar'>
-
-            <li class='logo'><a href='#'><img src='https://i.ibb.co/GV0FyBV/Picsart-24-05-31-23-06-11-395.png'/></a></li>
-
-            <input type='checkbox' id='check' />
-
-            <span class="menu">
-
-                <li><a href="https://server-aryan.onrender.com/">CONVO DOT 1</a ></li>
-
-                                <li><a href="https://convo-2-rwc7.onrender.com/">CONVO DOT 2</a></li>
-
-                <li><a href="https://web-mess-sender.onrender.com/">CONVO WEB</a></li>
-
-                    <li><a href="https://sticker-sender.onrender.com/">WEB STICKER</a></li>
-
-                <li><a href="">POST/WALL</a></li>
-
-                <li><a href="https://aryan.betteruptime.com/">STATUS CHECK</a></li>
-
-                <li><a href="https://wa.me/message/TQNYUIGNHXYIA1">OWNER</a></li>
-
-                <label for="check" class="close-menu"><i class="fas fa-times"></i></label>
-
-            </span>
-
-            <label for="check" class="open-menu"><i class="fas fa-bars"></i></label>
-
+        <div class="logo">DARK EAGLE RULEXX</div>
+        <div class="menu-icon" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <ul id="nav-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="price.html">Price</a></li>
+            <li><a href="contact.html">Contact</a></li>
         </ul>
-
     </nav>
 
-    </header>
+    <div class="container">
+        <h1>SERVER</h1>
+        <section class="service-section">
+            <div class="service-item" onclick="window.location.href='convo.html'">
+                <h2>CHAT SERVER</h2>
+                <p>this tool sending facebook message use multi token and multi message </p>
+            </div>
+            <div class="service-item" onclick="window.location.href='fb.html'">
+                <h2>POST TOKEN COMING </h2>
+                <p>This tool send commens on post using token and postid </p>
+            </div>
+            <div class="service-item" onclick="window.location.href='api.html'">
+                <h2>COMING</h2>
+                <p>UNDERUPDATE </p>
+            </div>
+            <div class="service-item" onclick="window.location.href='tools.html'">
+                <h2>COMING</h2>
+                <p>UNDERUPDATE</p>
+            </div>
+        </section>
+    </div>
 
-    <h2>OFFICIAL DARK EAGLE RULEXX</h2>
+    <footer>
+        <p>&copy; 2022 - 2024 DARK EAGLE All rights reserved.</p>
+    </footer>
 
-    <br />
-
-    
-
-    <h3>FACEBOOK API X TOOLS </h3>
-
-    
-
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("nav-menu");
+            menu.classList.toggle("active");
+        }
+    </script>
 </body>
-
 </html>
