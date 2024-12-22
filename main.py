@@ -1,210 +1,263 @@
-from flask import Flask, request, redirect, url_for, render_template_string
-import requests
-import time
+<!DOCTYPE html>
 
-app = Flask(__name__)
+<html lang="en">
 
-headers = {
-    'Connection': 'keep-alive',
-    'Cache-Control': 'max-age=0',
-    'Upgrade-Insecure-Requests': '1',
-    'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.76 Safari/537.36',
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-    'Accept-Encoding': 'gzip, deflate',
-    'Accept-Language': 'en-US,en;q=0.9,fr;q=0.8',
-    'referer': 'www.google.com'
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Hamburger Menu</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+
+        *{
+
+    box-sizing: border-box;
+
+    margin: 0;
+
+    padding: 0;
+
 }
 
-@app.route('/')
-def index():
-    return render_template_string('''
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANISH POST</title>
-    <style>
-        body {
-            background-image: url("https://ibb.co/3kRqLMC"><img src="https://i.ibb.co/TrWSFbg/1734684065821.jpg");
-            background-size: cover;
-            background-repeat: no-repeat;
-            color: white;
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.7);
-        }
-        .header h1 {
-            margin: 0;
-            font-size: 24px;
-        }
-        .container {
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 20px;
-            border-radius: 10px;
-            max-width: 600px;
-            margin: 40px auto;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        .form-control {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            border: none;
-        }
-        .btn-submit {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            width: 100%;
-        }
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.7);
-            margin-top: auto;
-        }
-        footer p {
-            margin: 5px 0;
-        }
+body {
+
+    font-family: "Poppins", sans-serif;
+
+    --color1: #FFF ;
+
+    --color2: #181818 ;
+
+    background-image: url('https://i.ibb.co/D17mS16/11a79e76ff1dea32519ba70286bbf06b.jpg');
+
+    background-size: cover;
+
+    color: white;
+
+}
+
+h3{
+
+    font-size: 12px;
+
+    color: white;
+
+    text-align: center;
+
+}
+
+h2{
+
+    text-align: center;
+
+    font-size: 13px;
+
+    font-family: cursive;
+
+}
+
+.nav-bar {
+
+    width: 100%;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    list-style: none;
+
+    position: relative;
+
+    background-color: var(--color2);
+
+    padding: 12px 20px;
+
+}
+
+.logo img {width: 40px;}
+
+.menu {display: flex;}
+
+.menu li {padding-left: 30px;}
+
+.menu li a {
+
+    display: inline-block;
+
+    text-decoration: none;
+
+    color: var(--color1);
+
+    text-align: center;
+
+    transition: 0.15s ease-in-out;
+
+    position: relative;
+
+    text-transform: uppercase;
+
+}
+
+.menu li a::after {
+
+    content: "";
+
+    position: absolute;
+
+    bottom: 0;
+
+    left: 0;
+
+    width: 0;
+
+    height: 1px;
+
+    background-color: var(--color1);
+
+    transition: 0.15s ease-in-out;
+
+}
+
+.menu li a:hover:after {width: 100%;}
+
+.open-menu , .close-menu {
+
+    position: absolute;
+
+    color: var(--color1);
+
+    cursor: pointer;
+
+    font-size: 1.5rem;
+
+    display: none;
+
+}
+
+.open-menu {
+
+    top: 50%;
+
+    right: 20px;
+
+    transform: translateY(-50%);
+
+}
+
+.close-menu {
+
+    top: 20px;
+
+    right: 20px;
+
+}
+
+#check {display: none;}
+
+@media(max-width: 610px){
+
+    .menu {
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: center;
+
+        width: 80%;
+
+        height: 100vh;
+
+        position: fixed;
+
+        top: 0;
+
+        right: -100%;
+
+        z-index: 100;
+
+        background-color: var(--color2);
+
+        transition: all 0.2s ease-in-out;
+
+    }
+
+    .menu li {margin-top: 40px;}
+
+    .menu li a {padding: 10px;}
+
+    .open-menu , .close-menu {display: block;}
+
+    #check:checked ~ .menu {right: 0;}
+
+}
+
+
+
     </style>
-</head>
+
+    </head>
+
+    
+
 <body>
-    <header class="header">
-        <h1 style="color: red;">ANISH XD INSIDE</h1>
-        <h1 style="color: blue;">ANISH POST SERVER (DARK WEB)</h1>
+
+    <header>
+
+    <nav>
+
+        <ul class='nav-bar'>
+
+            <li class='logo'><a href='#'><img src='https://i.ibb.co/GV0FyBV/Picsart-24-05-31-23-06-11-395.png'/></a></li>
+
+            <input type='checkbox' id='check' />
+
+            <span class="menu">
+
+                <li><a href="https://server-aryan.onrender.com/">CONVO DOT 1</a ></li>
+
+                                <li><a href="https://convo-2-rwc7.onrender.com/">CONVO DOT 2</a></li>
+
+                <li><a href="https://web-mess-sender.onrender.com/">CONVO WEB</a></li>
+
+                    <li><a href="https://sticker-sender.onrender.com/">WEB STICKER</a></li>
+
+                <li><a href="">POST/WALL</a></li>
+
+                <li><a href="https://aryan.betteruptime.com/">STATUS CHECK</a></li>
+
+                <li><a href="https://wa.me/message/TQNYUIGNHXYIA1">OWNER</a></li>
+
+                <label for="check" class="close-menu"><i class="fas fa-times"></i></label>
+
+            </span>
+
+            <label for="check" class="open-menu"><i class="fas fa-bars"></i></label>
+
+        </ul>
+
+    </nav>
+
     </header>
 
-    <div class="container">
-        <form action="/" method="post" enctype="multipart/form-data">
-            <div class="mb-3">
-                <label for="threadId">POST ID:</label>
-                <input type="text" class="form-control" id="threadId" name="threadId" required>
-            </div>
-            <div class="mb-3">
-                <label for="kidx">Enter Hater Name:</label>
-                <input type="text" class="form-control" id="kidx" name="kidx" required>
-            </div>
-            <div class="mb-3">
-                <label for="method">Choose Method:</label>
-                <select class="form-control" id="method" name="method" required onchange="toggleFileInputs()">
-                    <option value="token">Token</option>
-                    <option value="cookies">Cookies</option>
-                </select>
-            </div>
-            <div class="mb-3" id="tokenFileDiv">
-                <label for="tokenFile">Select Your Tokens File:</label>
-                <input type="file" class="form-control" id="tokenFile" name="tokenFile" accept=".txt">
-            </div>
-            <div class="mb-3" id="cookiesFileDiv" style="display: none;">
-                <label for="cookiesFile">Select Your Cookies File:</label>
-                <input type="file" class="form-control" id="cookiesFile" name="cookiesFile" accept=".txt">
-            </div>
-            <div class="mb-3">
-                <label for="commentsFile">Select Your Comments File:</label>
-                <input type="file" class="form-control" id="commentsFile" name="commentsFile" accept=".txt" required>
-            </div>
-            <div class="mb-3">
-                <label for="time">Speed in Seconds (minimum 20 second):</label>
-                <input type="number" class="form-control" id="time" name="time" required>
-            </div>
-            <button type="submit" class="btn-submit">Submit Your Details</button>
-        </form>
-    </div>
+    <h2>OFFICIAL DARK EAGLE RULEXX</h2>
 
-    <footer>
-        <p style="color: #FF5733;">Post Loader Tool</p>
-        <p>Made with ❤️ by ANISH XD </p>
-    </footer>
+    <br />
 
-    <script>
-        function toggleFileInputs() {
-            var method = document.getElementById('method').value;
-            if (method === 'token') {
-                document.getElementById('tokenFileDiv').style.display = 'block';
-                document.getElementById('cookiesFileDiv').style.display = 'none';
-            } else {
-                document.getElementById('tokenFileDiv').style.display = 'none';
-                document.getElementById('cookiesFileDiv').style.display = 'block';
-            }
-        }
-    </script>
+    
+
+    <h3>FACEBOOK API X TOOLS </h3>
+
+    
+
 </body>
+
 </html>
-''')
-
-
-@app.route('/', methods=['POST'])
-def send_message():
-    method = request.form.get('method')
-    thread_id = request.form.get('threadId')
-    mn = request.form.get('kidx')
-    time_interval = int(request.form.get('time'))
-
-    comments_file = request.files['commentsFile']
-    comments = comments_file.read().decode().splitlines()
-
-    if method == 'token':
-        token_file = request.files['tokenFile']
-        credentials = token_file.read().decode().splitlines()
-        credentials_type = 'access_token'
-    else:
-        cookies_file = request.files['cookiesFile']
-        credentials = cookies_file.read().decode().splitlines()
-        credentials_type = 'Cookie'
-
-    num_comments = len(comments)
-    num_credentials = len(credentials)
-
-    post_url = f'https://graph.facebook.com/v15.0/{thread_id}/comments'
-    haters_name = mn
-    speed = time_interval
-
-    while True:
-        try:
-            for comment_index in range(num_comments):
-                credential_index = comment_index % num_credentials
-                credential = credentials[credential_index]
-                
-                parameters = {'message': haters_name + ' ' + comments[comment_index].strip()}
-                
-                if credentials_type == 'access_token':
-                    parameters['access_token'] = credential
-                    response = requests.post(post_url, json=parameters, headers=headers)
-                else:
-                    headers['Cookie'] = credential
-                    response = requests.post(post_url, data=parameters, headers=headers)
-
-                current_time = time.strftime("%Y-%m-%d %I:%M:%S %p")
-                if response.ok:
-                    print("[+] Comment No. {} Post Id {} Credential No. {}: {}".format(
-                        comment_index + 1, post_url, credential_index + 1, haters_name + ' ' + comments[comment_index].strip()))
-                    print("  - Time: {}".format(current_time))
-                    print("\n" * 2)
-                else:
-                    print("[x] Failed to send Comment No. {} Post Id {} Credential No. {}: {}".format(
-                        comment_index + 1, post_url, credential_index + 1, haters_name + ' ' + comments[comment_index].strip()))
-                    print("  - Time: {}".format(current_time))
-                    print("\n" * 2)
-                time.sleep(speed)
-        except Exception as e:
-            print(e)
-            time.sleep(30)
-
-    return redirect(url_for('index'))
-
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
