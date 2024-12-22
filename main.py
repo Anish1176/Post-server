@@ -26,7 +26,7 @@ def index():
     <title>ANISH POST</title>
     <style>
         body {
-            background-image: url('https://i.ibb.co/qMNy8Lh/received-437195329281136.jpg');
+            background-image: url("https://ibb.co/3kRqLMC"><img src="https://i.ibb.co/TrWSFbg/1734684065821.jpg");
             background-size: cover;
             background-repeat: no-repeat;
             color: white;
