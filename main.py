@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+ app = Flask(__name__)
+app.secret_key = 'your_secret_key_here'  # Change this to a random secret key
+ 
+# Login credentials
+ADMIN_USERNAME = "ERIIC-EXO"
+ADMIN_PASSWORD = "3RIIC-XD"
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DARK EAGLE RULEXX</title>
